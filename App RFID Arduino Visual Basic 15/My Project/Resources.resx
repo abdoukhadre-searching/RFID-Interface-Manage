@@ -121,8 +121,11 @@
   <data name="loading-icon-animated-gif-191" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\loading-icon-animated-gif-191.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icone_editer" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icone_editer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="selector" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\selector.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="logo_uadb_i" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\logo_uadb_i.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icone_usb" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icone_usb.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -145,20 +148,20 @@
   <data name="icone_delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icone_delete.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icone_usb3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icone_usb3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="arduino uno" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\arduino uno.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icone_usb2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icone_usb2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="selector" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\selector.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="icone_editer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icone_editer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Click to browse" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Click to browse.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icone_usb3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icone_usb3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Disconnect" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Disconnect.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -175,7 +178,37 @@
   <data name="icone_fermer" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icone_fermer.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="logo_uadb_i" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\logo_uadb_i.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="profil_avatar_homme_icone_ronde_24640_14044jpg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\profil_avatar_homme_icone_ronde_24640_14044jpg.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="profile" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\profile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="click" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\click.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dashboard" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dashboard.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="logout" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\logout.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="payment_method" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\payment-method.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="process" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\process.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="rfid" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\rfid.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="settings" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\settings.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="usb_port" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\usb-port.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="usb_port__1_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\usb-port (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -18,12 +18,15 @@ Public Class Form1
     Dim SqlCmdSearchstr As String
 
     Public Shared StrSerialIn As String
+    Public Shared StrSerialIn_achat As String
     Dim GetID As Boolean = False
+    Dim GetID_forAchat As Boolean = False
     Dim ViewUserData As Boolean = False
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.CenterToScreen()
-        PanelConnection.Visible = True
+        PanelDashboard.Visible = True
+        PanelConnection.Visible = False
         PanelRegistrationandEditUser.Visible = False
         PanelUserData.Visible = False
         PanelPersonnel.Visible = False
@@ -122,8 +125,8 @@ Public Class Form1
                         PictureBoxImage.Image = Image.FromStream(lmgStr)
                         lmgStr.Close()
 
-                        LabelID.Text = "ID : " & DT.Rows(0).Item("numCarte")
-                        LabelNom.Text = DT.Rows(0).Item("nom")
+                    LabelID.Text = "ID : " & DT.Rows(0).Item("numCarte")
+                    LabelNom.Text = DT.Rows(0).Item("nom")
                         LabelPrenom.Text = DT.Rows(0).Item("prenom")
                         LabelCodePermanent.Text = DT.Rows(0).Item("codePermanent")
                         LabelNiveau.Text = DT.Rows(0).Item("niveau")
@@ -150,40 +153,47 @@ Public Class Form1
         TextBoxPrenom.Text = ""
         TextBoxNiveau.Text = ""
         TextBoxUfr.Text = ""
-        TextBoxCodePermanent.Text = ""
+        LabelCodeP.Text = "________"
         TextBoxTelephone.Text = ""
         TextBoxStatutCarte.Text = ""
-        TextBoxSolde.Text = ""
-        PictureBoxImageInput.Image = My.Resources.icone_click
+        LabelSolde.Text = "________"
+        PictureBoxImageInput.Image = My.Resources.click
     End Sub
 
     Private Sub ButtonConnection_Click(sender As Object, e As EventArgs) Handles ButtonConnection.Click
-        PictureBoxSelect.Top = ButtonConnection.Top
         PanelUserData.Visible = False
         PanelRegistrationandEditUser.Visible = False
         PanelAchatEtudiant.Visible = False
         PanelConnection.Visible = True ' Simple !! le panel selectionné uniquement sera visibble
         PanelPersonnel.Visible = False
+        PanelDashboard.Visible = False
     End Sub
 
     Private Sub ButtonPersonnel_Click(sender As Object, e As EventArgs) Handles ButtonPersonnel.Click
-        PictureBoxSelect.Top = ButtonPersonnel.Top
         PanelUserData.Visible = False
         PanelRegistrationandEditUser.Visible = False
         PanelConnection.Visible = False
         PanelAchatEtudiant.Visible = False
         PanelPersonnel.Visible = True
+        PanelDashboard.Visible = False
     End Sub
 
     Private Sub ButtonPageAchat_Click(sender As Object, e As EventArgs) Handles ButtonPageAchat.Click
-        PictureBoxSelect.Top = ButtonPageAchat.Top
         PanelUserData.Visible = False
         PanelRegistrationandEditUser.Visible = False
         PanelConnection.Visible = False
         PanelAchatEtudiant.Visible = True
         PanelPersonnel.Visible = False
+        PanelDashboard.Visible = False
     End Sub
-
+    Private Sub ButtonAcceuil_Click(sender As Object, e As EventArgs) Handles ButtonAcceuil.Click
+        PanelUserData.Visible = False
+        PanelRegistrationandEditUser.Visible = False
+        PanelConnection.Visible = False
+        PanelAchatEtudiant.Visible = False
+        PanelPersonnel.Visible = False
+        PanelDashboard.Visible = True
+    End Sub
     Private Sub ButtonUserData_Click(sender As Object, e As EventArgs) Handles ButtonUserData.Click
         If TimerSerialIn.Enabled = False Then
             MsgBox("Impossible de lire les données !!!" & vbCr & "Cliquer sur le menu de Connection ensuite le bouton de Connection.", MsgBoxStyle.Information, "Information")
@@ -191,11 +201,11 @@ Public Class Form1
         Else
             StrSerialIn = ""
             ViewUserData = True
-            PictureBoxSelect.Top = ButtonUserData.Top
             PanelRegistrationandEditUser.Visible = False
             PanelConnection.Visible = False
             PanelPersonnel.Visible = False
             PanelAchatEtudiant.Visible = False
+            PanelDashboard.Visible = False
             PanelUserData.Visible = True
         End If
     End Sub
@@ -203,11 +213,11 @@ Public Class Form1
     Private Sub ButtonRegistration_Click(sender As Object, e As EventArgs) Handles ButtonRegistration.Click
         StrSerialIn = ""
         ViewUserData = False
-        PictureBoxSelect.Top = ButtonRegistration.Top
         PanelConnection.Visible = False
         PanelUserData.Visible = False
         PanelPersonnel.Visible = False
         PanelAchatEtudiant.Visible = False
+        PanelDashboard.Visible = False
         PanelRegistrationandEditUser.Visible = True
         ShowData()
     End Sub
@@ -218,6 +228,10 @@ Public Class Form1
 
     Private Sub PanelAchatEtudiant_Resize(sender As Object, e As EventArgs) Handles PanelAchatEtudiant.Resize
         PanelAchatEtudiant.Invalidate()
+    End Sub
+
+    Private Sub PanelDashboard_ContextMenuChanged(sender As Object, e As EventArgs)
+        '----------------'
     End Sub
 
     Private Sub PanelPersonnel_Resize(sender As Object, e As EventArgs) Handles PanelPersonnel.Resize
@@ -273,16 +287,17 @@ Public Class Form1
 
     Private Sub ButtonConnect_Click(sender As Object, e As EventArgs) Handles ButtonConnect.Click
         If ButtonConnect.Text = "Connecter" Then
-            Try
-                SerialPort1.BaudRate = ComboBoxBaudRate.SelectedItem
+            'Try
+            SerialPort1.BaudRate = ComboBoxBaudRate.SelectedItem
                 SerialPort1.PortName = ComboBoxPort.SelectedItem
-                'Try
-                SerialPort1.Open()
+                Try
+                    SerialPort1.Open()
                 TimerSerialIn.Start()
+                TimerSerialIn2.Start() ' add
                 ButtonConnect.Text = "Déconnecté"
-                PictureBoxStatusConnect.Image = My.Resources.icone_connected
-            Catch ex As Exception
-                MsgBox("Echec de la connection !!!" & vbCr & "L'Arduino n'est pas détecté.", MsgBoxStyle.Critical, "Message d'erreur")
+                    PictureBoxStatusConnect.Image = My.Resources.icone_connected
+                Catch ex As Exception
+                    MsgBox("Echec de la connection !!!" & vbCr & "L'Arduino n'est pas détecté.", MsgBoxStyle.Critical, "Message d'erreur")
             PictureBoxStatusConnect.Image = My.Resources.Disconnect
             End Try
         ElseIf ButtonConnect.Text = "Déconnecté" Then
@@ -290,6 +305,7 @@ Public Class Form1
             ButtonConnect.Text = "Connecté"
             LabelConnectionStatus.Text = "Statut de la connection : Déconnecté"
             TimerSerialIn.Stop()
+            TimerSerialIn2.Stop() 'add
             SerialPort1.Close()
         End If
     End Sub
@@ -345,10 +361,10 @@ Public Class Form1
             Return
         End If
 
-        If TextBoxCodePermanent.Text = "" Then
-            MessageBox.Show("Le champ **code permanent** ne peut pas etre vide !!!", "Message d'erreur", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Return
-        End If
+        'If LabelCodeP.Text = "" Then
+        '  MessageBox.Show("Le champ **code permanent** ne peut pas etre vide !!!", "Message d'erreur", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        '   Return
+        'End If
 
 
         If TextBoxNiveau.Text = "" Then
@@ -362,10 +378,10 @@ Public Class Form1
             Return
         End If
 
-        If TextBoxSolde.Text = "" Then
-            MessageBox.Show("Le champ **solde**  ne peut pas etre vide !!!", "Message d'erreur", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Return
-        End If
+        'If TextBoxSolde.Text = "" Then
+        '   MessageBox.Show("Le champ **solde**  ne peut pas etre vide !!!", "Message d'erreur", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        '   Return
+        'End If
 
         If TextBoxTelephone.Text = "" Then
             MessageBox.Show("Le champ **telephone** ne peut pas etre vide !", "Message d'erreurs", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -399,8 +415,8 @@ Public Class Form1
                     .Parameters.AddWithValue("@niveau", TextBoxNiveau.Text)
                     .Parameters.AddWithValue("@ufr", TextBoxUfr.Text)
                     .Parameters.AddWithValue("@statusCarte", TextBoxStatutCarte.Text)
-                    .Parameters.AddWithValue("@solde", TextBoxSolde.Text)
-                    .Parameters.AddWithValue("@codePermanent", TextBoxCodePermanent.Text)
+                    .Parameters.AddWithValue("@solde", LabelSolde.Text)
+                    .Parameters.AddWithValue("@codePermanent", LabelCodeP.Text)
                     .Parameters.AddWithValue("@numCarte", LabelGetID.Text)
                     .Parameters.AddWithValue("@image", arrImage)
                     .ExecuteNonQuery()
@@ -439,8 +455,8 @@ Public Class Form1
                         .Parameters.AddWithValue("@niveau", TextBoxNiveau.Text)
                         .Parameters.AddWithValue("@ufr", TextBoxUfr.Text)
                         .Parameters.AddWithValue("@statusCarte", TextBoxStatutCarte.Text)
-                        .Parameters.AddWithValue("@solde", TextBoxSolde.Text)
-                        .Parameters.AddWithValue("@codePermanent", TextBoxCodePermanent.Text)
+                        .Parameters.AddWithValue("@solde", LabelSolde.Text)
+                        .Parameters.AddWithValue("@codePermanent", LabelCodeP.Text)
                         .Parameters.AddWithValue("@numCarte", LabelGetID.Text)
                         .Parameters.AddWithValue("@image", arrImage)
                         .ExecuteNonQuery()
@@ -476,8 +492,8 @@ Public Class Form1
                         .Parameters.AddWithValue("@niveau", TextBoxNiveau.Text)
                         .Parameters.AddWithValue("@ufr", TextBoxUfr.Text)
                         .Parameters.AddWithValue("@statusCarte", TextBoxStatutCarte.Text)
-                        .Parameters.AddWithValue("@solde", TextBoxSolde.Text)
-                        .Parameters.AddWithValue("@codePermanent", TextBoxCodePermanent.Text)
+                        .Parameters.AddWithValue("@solde", LabelSolde.Text)
+                        .Parameters.AddWithValue("@codePermanent", LabelCodeP.Text)
                         .Parameters.AddWithValue("@numCarte", LabelGetID.Text)
                         .ExecuteNonQuery()
                     End With
@@ -694,19 +710,21 @@ Public Class Form1
 
     Private Sub TimerSerialIn_Tick(sender As Object, e As EventArgs) Handles TimerSerialIn.Tick
         Try
-            StrSerialIn = SerialPort1.ReadExisting
-            LabelConnectionStatus.Text = "Statut de la connection: Connecté"
-            If StrSerialIn <> "" Then
-                If GetID = True Then
-                    LabelGetID.Text = StrSerialIn
-                    GetID = False
-                    If LabelGetID.Text <> "________" Then
-                        PanelReadingTagProcess.Visible = False
-                        IDCheck()
+            If GetID_forAchat = False Then
+                StrSerialIn = SerialPort1.ReadExisting
+                LabelConnectionStatus.Text = "Statut de la connection: Connecté"
+                If StrSerialIn <> "" Then
+                    If GetID = True Then
+                        LabelGetID.Text = StrSerialIn
+                        GetID = False
+                        If LabelGetID.Text <> "________" Then
+                            PanelReadingTagProcess.Visible = False
+                            IDCheck()
+                        End If
                     End If
-                End If
-                If ViewUserData = True Then
-                    ViewData()
+                    If ViewUserData = True Then
+                        ViewData()
+                    End If
                 End If
             End If
         Catch ex As Exception
@@ -752,12 +770,12 @@ Public Class Form1
                     Dim ImgArray() As Byte = DT.Rows(0).Item("image")
                     Dim lmgStr As New System.IO.MemoryStream(ImgArray)
                     PictureBoxImageInput.Image = Image.FromStream(lmgStr)
-                    PictureBoxImageInput.SizeMode = PictureBoxSizeMode.Zoom
+                    PictureBoxImageInput.SizeMode = PictureBoxSizeMode.StretchImage
 
                     TextBoxNom.Text = DT.Rows(0).Item("nom")
                     TextBoxPrenom.Text = DT.Rows(0).Item("prenom")
-                    TextBoxCodePermanent.Text = DT.Rows(0).Item("codePermanent")
-                    TextBoxSolde.Text = DT.Rows(0).Item("solde")
+                    LabelCodeP.Text = DT.Rows(0).Item("codePermanent")
+                    LabelSolde.Text = DT.Rows(0).Item("solde")
                     TextBoxStatutCarte.Text = DT.Rows(0).Item("statusCarte")
                     TextBoxTelephone.Text = DT.Rows(0).Item("telephone")
                     TextBoxNiveau.Text = DT.Rows(0).Item("niveau")
@@ -797,5 +815,46 @@ Public Class Form1
         ButtonScanID.Enabled = True
     End Sub
 
+    Private Sub ButtonScanAchat_Click(sender As Object, e As EventArgs) Handles ButtonScanAchat.Click
+        If TimerSerialIn2.Enabled = True Then
+            PanelReadCarteAchat.Visible = True
+            GetID_forAchat = True
+            ButtonScanAchat.Enabled = False
+        Else
+            MsgBox("Echec lors de la lecture des données!!!" & vbCr & "Verifier que vous etes bien connecté .", MsgBoxStyle.Critical, "Message d'erreur")
+        End If
+    End Sub
+
+    Private Sub ButtonFermerLecture_Click(sender As Object, e As EventArgs) Handles ButtonFermerLecture.Click
+        PanelReadCarteAchat.Visible = False
+        ButtonScanAchat.Enabled = True
+    End Sub
+
+    Private Sub ButtonAnnulerAchatCarte_Click(sender As Object, e As EventArgs) Handles ButtonAnnulerAchatCarte.Click
+        Label_idCarte.Text = "__________"
+    End Sub
+
+    Private Sub TimerSerialIn2_Tick(sender As Object, e As EventArgs) Handles TimerSerialIn2.Tick
+        '...Un second timer pour piloter le Scan de la carte RFID au moment d'effectuer un achat
+        Try
+            If GetID = False Then
+                Dim StrSerialIn_achat As String = SerialPort1.ReadExisting
+                If StrSerialIn_achat <> "" Then
+                    If GetID_forAchat = True Then
+                        Label_idCarte.Text = StrSerialIn_achat
+                        GetID_forAchat = False
+                        If Label_idCarte.Text <> "" Or Label_idCarte.Text = "__________" Then
+                            PanelReadCarteAchat.Visible = False
+                            ButtonScanAchat.Enabled = True
+                        End If
+                    End If
+                End If
+            End If
+        Catch ex As Exception
+            TimerSerialIn2.Stop()
+            MsgBox("Erreur lors de la tentative d'identification de la carte !!!", MsgBoxStyle.Critical, "Message d'erreur")
+            Return
+        End Try
+    End Sub
 
 End Class
